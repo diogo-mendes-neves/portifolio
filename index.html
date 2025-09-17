@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio DevOps/SRE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header fixo com navegação -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="#hero">DevOps Portfolio</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Início</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#education" class="nav-link">Formação</a></li>
+                <li><a href="#courses" class="nav-link">Cursos</a></li>
+                <li><a href="#experience" class="nav-link">Experiência</a></li>
+                <li><a href="#projects" class="nav-link">Projetos</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Progress bar de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="typing-text" id="typingText"></span>
+                        <span class="cursor">|</span>
+                    </h1>
+                    <p class="hero-subtitle fade-up">Especialista em DevOps e Site Reliability Engineering</p>
+                    <div class="hero-cta fade-up">
+                        <button class="btn btn-primary" onclick="scrollToSection('about')">Conhecer mais</button>
+                        <button class="btn btn-outline" onclick="scrollToSection('contact')">Entre em contato</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-background"></div>
+        </section>
+
+        <!-- Sobre Mim -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title fade-up">Sobre Mim</h2>
+                <div class="about-content">
+                    <div class="about-text fade-up">
+                        <p class="placeholder-text">Adicione sua apresentação pessoal e profissional aqui. Conte sobre sua paixão por DevOps, SRE e tecnologia em geral.</p>
+                        <p class="placeholder-text">Descreva sua jornada, motivações e objetivos na área de DevOps/SRE.</p>
+                    </div>
+                    <div class="about-stats fade-up">
+                        <div class="stat-item">
+                            <h3>X</h3>
+                            <p>Anos de experiência</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>X</h3>
+                            <p>Projetos concluídos</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>X</h3>
+                            <p>Certificações</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formação Acadêmica -->
+        <section id="education" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title fade-up">Formação Acadêmica</h2>
+                <div class="education-grid">
+                    <div class="education-card fade-up">
+                        <div class="card-icon">🎓</div>
+                        <h3>Bacharelado em Ciência da Computação</h3>
+                        <p class="institution">Nome da Instituição</p>
+                        <p class="period">Ano de início - Ano de conclusão</p>
+                        <p class="description">Adicione detalhes relevantes sobre sua formação acadêmica</p>
+                    </div>
+                    <div class="education-card fade-up">
+                        <div class="card-icon">📚</div>
+                        <h3>Cursos Complementares</h3>
+                        <p class="institution">Instituições diversas</p>
+                        <p class="period">Período</p>
+                        <p class="description">Lista de cursos complementares relevantes para DevOps/SRE</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cursos e Certificações -->
+        <section id="courses" class="section">
+            <div class="container">
+                <h2 class="section-title fade-up">Cursos e Certificações</h2>
+                <div class="courses-grid">
+                    <div class="course-card fade-up">
+                        <div class="course-header">
+                            <h3>AWS Certified DevOps Engineer</h3>
+                            <span class="course-status">Em andamento</span>
+                        </div>
+                        <p>Amazon Web Services</p>
+                        <div class="course-skills">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">DevOps</span>
+                        </div>
+                    </div>
+                    <div class="course-card fade-up">
+                        <div class="course-header">
+                            <h3>Kubernetes Administrator</h3>
+                            <span class="course-status">Planejado</span>
+                        </div>
+                        <p>Cloud Native Computing Foundation</p>
+                        <div class="course-skills">
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Container</span>
+                        </div>
+                    </div>
+                    <div class="course-card fade-up">
+                        <div class="course-header">
+                            <h3>Docker Certified Associate</h3>
+                            <span class="course-status">Planejado</span>
+                        </div>
+                        <p>Docker Inc.</p>
+                        <div class="course-skills">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Containers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiências Profissionais -->
+        <section id="experience" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title fade-up">Experiências Profissionais</h2>
+                <div class="timeline">
+                    <div class="timeline-item fade-up">
+                        <div class="timeline-content">
+                            <h3>Cargo atual ou desejado</h3>
+                            <p class="company">Nome da empresa</p>
+                            <p class="period">Período de trabalho</p>
+                            <p class="description">Descreva suas responsabilidades, projetos e conquistas nesta posição.</p>
+                            <div class="experience-skills">
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-up">
+                        <div class="timeline-content">
+                            <h3>Experiência anterior ou estágio</h3>
+                            <p class="company">Nome da empresa</p>
+                            <p class="period">Período</p>
+                            <p class="description">Adicione detalhes sobre experiências anteriores relevantes para DevOps/SRE.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos Técnicos -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title fade-up">Projetos Técnicos</h2>
+                <div class="projects-grid">
+                    <div class="project-card fade-up">
+                        <div class="project-header">
+                            <h3>Pipeline CI/CD Automatizado</h3>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link">GitHub</a>
+                                <a href="#" target="_blank" class="project-link">Demo</a>
+                            </div>
+                        </div>
+                        <p class="project-description">Descreva seu projeto de pipeline CI/CD, tecnologias utilizadas e resultados alcançados.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                    <div class="project-card fade-up">
+                        <div class="project-header">
+                            <h3>Infraestrutura como Código</h3>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                        <p class="project-description">Projeto de IaC utilizando Terraform e outras ferramentas modernas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                    <div class="project-card fade-up">
+                        <div class="project-header">
+                            <h3>Monitoramento e Observabilidade</h3>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                        <p class="project-description">Sistema de monitoramento completo com alertas e dashboards.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">ELK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Habilidades Técnicas -->
+        <section id="skills" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title fade-up">Habilidades Técnicas</h2>
+                <div class="skills-categories">
+                    <div class="skill-category fade-up">
+                        <h3>Cloud Platforms</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Amazon Web Services (AWS)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Google Cloud Platform</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="60"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Microsoft Azure</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="50"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category fade-up">
+                        <h3>Containers & Orchestration</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Kubernetes</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="65"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category fade-up">
+                        <h3>CI/CD & Automation</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Jenkins</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">GitLab CI</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">GitHub Actions</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="65"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title fade-up">Entre em Contato</h2>
+                <div class="contact-content">
+                    <div class="contact-info fade-up">
+                        <h3>Vamos conversar!</h3>
+                        <p>Estou sempre interessado em novas oportunidades e projetos desafiadores na área de DevOps e SRE.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <strong>Email:</strong>
+                                <span>seu.email@exemplo.com</span>
+                            </div>
+                            <div class="contact-method">
+                                <strong>LinkedIn:</strong>
+                                <a href="#" target="_blank">linkedin.com/in/seuperfil</a>
+                            </div>
+                            <div class="contact-method">
+                                <strong>GitHub:</strong>
+                                <a href="#" target="_blank">github.com/seuusuario</a>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form fade-up">
+                        <div class="form-group">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-control" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Assunto</label>
+                            <select class="form-control">
+                                <option>Oportunidade de trabalho</option>
+                                <option>Projeto freelancer</option>
+                                <option>Consultoria</option>
+                                <option>Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mensagem</label>
+                            <textarea class="form-control" rows="5" placeholder="Descreva como posso ajudá-lo..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full-width">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 DevOps Portfolio. Desenvolvido com foco em performance e escalabilidade.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
