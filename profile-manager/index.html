@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Sections Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>🎓 Profile Sections Manager</h1>
+            <p class="subtitle">Gerencie seus perfis de certificações e gere código para embed</p>
+            <div class="header-actions">
+                <button class="btn btn--secondary" id="exportBtn" title="Exportar dados (Ctrl+E)">📥 Exportar</button>
+                <button class="btn btn--secondary" id="importBtn" title="Importar dados (Ctrl+I)">📤 Importar</button>
+                <button class="btn btn--primary" id="generateCodeBtn" title="Gerar código HTML/CSS (Ctrl+G)">🔗 Gerar Código</button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-platform="microsoft_learn" title="Microsoft Learn (Alt+1)">
+                <span class="tab-icon">🔷</span>
+                <span class="tab-label">Microsoft Learn</span>
+            </button>
+            <button class="tab-btn" data-platform="google_skills" title="Google Skills (Alt+2)">
+                <span class="tab-icon">🔹</span>
+                <span class="tab-label">Google Skills</span>
+            </button>
+            <button class="tab-btn" data-platform="aws_skillbuilder" title="AWS SkillBuilder (Alt+3)">
+                <span class="tab-icon">🟧</span>
+                <span class="tab-label">AWS SkillBuilder</span>
+            </button>
+            <button class="tab-btn" data-platform="roadmapsh" title="Roadmap.sh (Alt+4)">
+                <span class="tab-icon">🛣️</span>
+                <span class="tab-label">Roadmap.sh</span>
+            </button>
+            <button class="tab-btn" data-platform="custom" title="Cartões Personalizados (Alt+5)">
+                <span class="tab-icon">⭐</span>
+                <span class="tab-label">Personalizado</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Platform Info Bar -->
+            <div class="platform-info" id="platformInfo">
+                <div class="platform-info-content">
+                    <h3 id="platformName">Microsoft Learn</h3>
+                    <p id="platformDescription">Microsoft Learn profiles podem ser incorporados usando iframe ou links diretos para páginas de transcrição</p>
+                </div>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="controls-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Buscar certificações..." class="form-control">
+                </div>
+                <div class="filter-controls">
+                    <select id="statusFilter" class="form-control">
+                        <option value="all">Todos os Status</option>
+                        <option value="Active">Ativo</option>
+                        <option value="In Progress">Em Progresso</option>
+                        <option value="Expired">Expirado</option>
+                    </select>
+                    <select id="sortBy" class="form-control">
+                        <option value="date-desc">Data (Recente)</option>
+                        <option value="date-asc">Data (Antiga)</option>
+                        <option value="title-asc">Título (A-Z)</option>
+                        <option value="title-desc">Título (Z-A)</option>
+                    </select>
+                </div>
+                <button class="btn btn--primary" id="addCardBtn" title="Adicionar certificação (Ctrl+N)">➕ Adicionar</button>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="cards-grid" id="cardsGrid">
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📋</div>
+                    <h3>Nenhuma certificação encontrada</h3>
+                    <p>Adicione sua primeira certificação clicando no botão "Adicionar" acima</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Card Modal -->
+    <div class="modal" id="cardModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Adicionar Certificação</h2>
+                <button class="modal-close" id="closeModal" title="Fechar (ESC)">&times;</button>
+            </div>
+            <form id="cardForm">
+                <div class="form-group">
+                    <label for="cardTitle" class="form-label">Título *</label>
+                    <input type="text" id="cardTitle" class="form-control" required placeholder="Ex: Azure Fundamentals">
+                </div>
+                <div class="form-group">
+                    <label for="cardDescription" class="form-label">Descrição *</label>
+                    <textarea id="cardDescription" class="form-control" rows="3" required placeholder="Descreva a certificação ou conquista..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cardUrl" class="form-label">URL do Perfil/Certificação *</label>
+                    <input type="url" id="cardUrl" class="form-control" required placeholder="https://...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cardDate" class="form-label">Data *</label>
+                        <input type="date" id="cardDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardStatus" class="form-label">Status *</label>
+                        <select id="cardStatus" class="form-control" required>
+                            <option value="Active">Ativo</option>
+                            <option value="In Progress">Em Progresso</option>
+                            <option value="Expired">Expirado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardBadgeUrl" class="form-label">URL do Badge/Imagem (Opcional)</label>
+                    <input type="url" id="cardBadgeUrl" class="form-control" placeholder="https://...">
+                    <small class="form-help">Para roadmap.sh, use: https://roadmap.sh/card/wide/SEU_ID?variant=dark&amp;roadmaps=</small>
+                </div>
+                <div class="form-group" id="roadmapFields" style="display: none;">
+                    <label class="form-label">Código Roadmap.sh (Opcional)</label>
+                    <textarea id="cardHtml" class="form-control" rows="2" placeholder="Cole o código HTML do roadmap.sh..."></textarea>
+                    <textarea id="cardMarkdown" class="form-control" rows="2" placeholder="Cole o código Markdown do roadmap.sh..." style="margin-top: 8px;"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn--secondary" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="btn btn--primary" id="saveBtn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content modal-content--small">
+            <div class="modal-header">
+                <h2>Confirmar Exclusão</h2>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir esta certificação?</p>
+                <p class="delete-item-name" id="deleteItemName"></p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn--secondary" id="cancelDeleteBtn">Cancelar</button>
+                <button type="button" class="btn btn--primary" id="confirmDeleteBtn" style="background-color: var(--color-error);">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Generation Modal -->
+    <div class="modal" id="codeModal">
+        <div class="modal-content modal-content--large">
+            <div class="modal-header">
+                <h2>Código para Embed</h2>
+                <button class="modal-close" id="closeCodeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-tabs">
+                    <button class="code-tab active" data-code-tab="html">HTML</button>
+                    <button class="code-tab" data-code-tab="css">CSS</button>
+                    <button class="code-tab" data-code-tab="preview">Preview</button>
+                </div>
+                <div class="code-content active" data-code-content="html">
+                    <div class="code-header">
+                        <span>HTML Code</span>
+                        <button class="btn btn--sm btn--secondary" id="copyHtmlBtn">📋 Copiar</button>
+                    </div>
+                    <pre><code id="htmlCode"></code></pre>
+                </div>
+                <div class="code-content" data-code-content="css">
+                    <div class="code-header">
+                        <span>CSS Code</span>
+                        <button class="btn btn--sm btn--secondary" id="copyCssBtn">📋 Copiar</button>
+                    </div>
+                    <pre><code id="cssCode"></code></pre>
+                </div>
+                <div class="code-content" data-code-content="preview">
+                    <div class="code-header">
+                        <span>Preview</span>
+                    </div>
+                    <div class="preview-container" id="previewContainer"></div>
+                </div>
+                <div class="embed-guide">
+                    <h4>📖 Guia de Incorporação</h4>
+                    <div class="guide-section">
+                        <strong>Para Sites HTML:</strong>
+                        <ol>
+                            <li>Copie o código HTML acima</li>
+                            <li>Cole no seu arquivo HTML</li>
+                            <li>Copie o CSS e adicione ao seu arquivo de estilos</li>
+                            <li>Teste o comportamento responsivo</li>
+                        </ol>
+                    </div>
+                    <div class="guide-section">
+                        <strong>Para GitHub Pages:</strong>
+                        <ol>
+                            <li>Adicione ao arquivo HTML do repositório</li>
+                            <li>Certifique-se de que as imagens usam URLs HTTPS</li>
+                            <li>Teste no modo de preview do GitHub</li>
+                            <li>Para README, considere usar formato Markdown</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Input for Import (Hidden) -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <script src="app.js"></script>
+</body>
+</html>
